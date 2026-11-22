@@ -7,12 +7,8 @@ describe("tiny-myers", () => {
     const b = ["C", "B", "A", "B", "A", "C"];
     const edits = diff(a, b);
 
-    const reconstructedOld = edits
-      .filter((e) => e.op !== "insert")
-      .map((e) => e.item);
-    const reconstructedNew = edits
-      .filter((e) => e.op !== "delete")
-      .map((e) => e.item);
+    const reconstructedOld = edits.filter((e) => e.op !== "insert").map((e) => e.item);
+    const reconstructedNew = edits.filter((e) => e.op !== "delete").map((e) => e.item);
 
     expect(reconstructedOld).toEqual(a);
     expect(reconstructedNew).toEqual(b);

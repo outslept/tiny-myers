@@ -24,21 +24,13 @@ export function diff<T>(
   const newLen = newItems.length;
 
   let start = 0;
-  while (
-    start < oldLen &&
-    start < newLen &&
-    equals(oldItems[start]!, newItems[start]!)
-  ) {
+  while (start < oldLen && start < newLen && equals(oldItems[start]!, newItems[start]!)) {
     start++;
   }
 
   let oldEnd = oldLen;
   let newEnd = newLen;
-  while (
-    oldEnd > start &&
-    newEnd > start &&
-    equals(oldItems[oldEnd - 1]!, newItems[newEnd - 1]!)
-  ) {
+  while (oldEnd > start && newEnd > start && equals(oldItems[oldEnd - 1]!, newItems[newEnd - 1]!)) {
     oldEnd--;
     newEnd--;
   }
@@ -84,21 +76,14 @@ export function diff<T>(
     outer: for (let d = 0; d <= max; d++) {
       for (let k = -d; k <= d; k += 2) {
         let x: number;
-        if (
-          k === -d ||
-          (k !== d && v[offset + k - 1]! < v[offset + k + 1]!)
-        ) {
+        if (k === -d || (k !== d && v[offset + k - 1]! < v[offset + k + 1]!)) {
           x = v[offset + k + 1]!;
         } else {
           x = v[offset + k - 1]! + 1;
         }
 
         let y = x - k;
-        while (
-          x < n &&
-          y < m &&
-          equals(oldItems[start + x]!, newItems[start + y]!)
-        ) {
+        while (x < n && y < m && equals(oldItems[start + x]!, newItems[start + y]!)) {
           x++;
           y++;
         }
@@ -120,10 +105,7 @@ export function diff<T>(
       const vPrev = trace[d - 1]!;
       const k = x - y;
       const prevK =
-        k === -d ||
-        (k !== d && vPrev[offset + k - 1]! < vPrev[offset + k + 1]!)
-          ? k + 1
-          : k - 1;
+        k === -d || (k !== d && vPrev[offset + k - 1]! < vPrev[offset + k + 1]!) ? k + 1 : k - 1;
 
       const xStart = vPrev[offset + prevK]!;
       const yStart = xStart - prevK;
@@ -199,10 +181,7 @@ function splitLines(text: string): string[] {
   return lines;
 }
 
-export function diffLines(
-  oldText: string,
-  newText: string,
-): DiffEdit<string>[] {
+export function diffLines(oldText: string, newText: string): DiffEdit<string>[] {
   return diff(splitLines(oldText), splitLines(newText));
 }
 

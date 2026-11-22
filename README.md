@@ -2,12 +2,6 @@
 
 Zero-dependency Myers `O((N + M)D)` diff algorithm and unified patch generator in TypeScript.
 
-## Installation
-
-```bash
-npm install tiny-myers
-```
-
 ## Usage
 
 ```ts
